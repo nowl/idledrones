@@ -1,0 +1,43 @@
+* hex map
+* resource types
+** food
+   - cost: none
+   - time: XXX some amount of seconds
+** wood
+   - cost: XXX some amount of food
+   - time: XXX some amount of time
+** oil
+   - cost: XXX some amount of food, iron, and wood
+   - time: XXX some amount of time
+** iron
+   - cost: XXX some food, wood
+   - time: XXX some amount of time
+* all terrain types deplete their resources over time
+* all terrain types have a random efficiency
+** may also be dependent on surrounding hexes
+* terrain types
+** plains
+   - produce: food (100%) (small chance of oil)
+** forest
+   - produce: wood (100%) (small chance of oil)
+** mountain
+   - produce: iron (< 100%) (small chance of oil)
+* commodities market
+** trade any of the resources for gold
+** each commodity's price based solely on supply and demand
+* goal of game is to obtain the most money
+** there should be a page showing standings 
+   - should who is at the top based on total wealth (current commodity prices)
+* actions
+** explore
+   - uncover new hexes
+** probe
+   - explore a given hex for approximate oil,wood,iron,food efficiency
+** build
+   - create a specific type of extractor on the given hex
+** scrap
+   - destroy the extractor on the given hex
+* regrowth season
+** replenishes wood, food
+* ownership of other user's companies
+  - essentially a stock market
