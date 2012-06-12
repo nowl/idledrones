@@ -1,0 +1,12 @@
+(defmacro tl-run (&body body)
+  `(eval-when (:compile-toplevel :load-toplevel :execute)
+     ,@body))
+
+(tl-run (load "~/quicklisp/setup.lisp"))
+(tl-run (ql:quickload :hunchentoot))
+(tl-run (ql:quickload :parenscript))
+(tl-run (ql:quickload :html-template))
+(tl-run (ql:quickload :cl-json))
+(tl-run (ql:quickload :drakma))
+(tl-run (ql:quickload :cl-redis))
+(tl-run (require 'idledrones))

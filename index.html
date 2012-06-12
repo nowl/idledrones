@@ -9,10 +9,14 @@
   </head>
   <body>
     <p>This is a test.</p>
-    <p style="{color:red;}" onclick="<!-- TMPL_VAR js -->">Hello <!-- TMPL_VAR name --></p>
+    <!-- TMPL_IF id -->
+    <p style="{color:red;}">Hello <!-- TMPL_VAR id --></p>
+    <a href="/logout">Logout</a>
+    <!-- TMPL_ELSE -->
     <a href="#" id="browserid" title="Sign-in with BrowserID">  
       <img src="/images/sign_in_blue.png" alt="Sign in">  
     </a>
+    <!-- /TMPL_IF -->
   </body>
     <script type="text/javascript">
       $('#browserid').click(function() {
@@ -29,7 +33,7 @@
           data: { assertion: assertion },  
           success: function(res, status, xhr) {
             if (res === null) {}//loggedOut();  
-              else loggedIn(res);  
+              window.location = "/";
             },  
           error: function(res, status, xhr) {  
             alert("login failure" + res);  

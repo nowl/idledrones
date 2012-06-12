@@ -13,6 +13,7 @@
                "cl-json"
                "drakma")
   :components
-  ((:file "package"))
-   ;;(:file "main"))
+  ((:file "package")
+   (:file "redis")
+   (:file "main"))
   :serial t)
