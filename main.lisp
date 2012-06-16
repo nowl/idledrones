@@ -1,9 +1,5 @@
 (in-package :idrones)
 
-(defun ensure-redis ()
-  (when (not (redis:connected-p))
-    (redis:connect)))
-
 (defparameter *local-server* "http://localhost:4242")
 (defparameter *acceptor* (make-instance 'easy-acceptor :port 4242))
 
@@ -13,7 +9,6 @@
 
 (define-easy-handler (index :uri "/") ()
   (setf (content-type*) "text/html")
-  (ensure-redis)
   (let ((id (session-value :id)))    
     (when id (set-login-time id))
     (with-output-to-string (stream)
@@ -22,7 +17,7 @@
 
 (defun valid-browserid-responsep (json-result)
   (and (equal "okay" (cdr (assoc :status json-result)))
-       (equal *local-server* (cdr (assoc :audience *test*)))))
+       (equal *local-server* (cdr (assoc :audience json-result)))))
 
 (define-easy-handler (login-url :uri "/login") ()
   (setf (content-type*) "text")
@@ -32,7 +27,8 @@
                                :parameters (list (cons "assertion" (post-parameter "assertion"))
                                                  (cons "audience" *local-server*))))
          (verify-result
-          (json:decode-json-from-string (flex:octets-to-string verify-result-from-server))))
+          (custom-json:decode-json-from-string
+           (flex:octets-to-string verify-result-from-server))))
     (when (valid-browserid-responsep verify-result)
       (start-session)
       (setf (session-value :id)

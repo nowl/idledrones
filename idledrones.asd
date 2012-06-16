@@ -9,11 +9,11 @@
   :depends-on ("hunchentoot"
                "parenscript"
                "html-template"
-               "cl-redis"
+               "drakma"
                "cl-json"
-               "drakma")
+               "chillax")
   :components
   ((:file "package")
-   (:file "redis")
+   (:file "couch")
    (:file "main"))
   :serial t)
