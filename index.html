@@ -4,15 +4,17 @@
 
   <head>
     <title>
-      Title here
+      IDLE DRONES
     </title>
   </head>
   <body>
-    <p>This is a test.</p>
+    <p>Welcome to Idle Drones.</p>
     <!-- TMPL_IF id -->
     <p style="{color:red;}">Hello <!-- TMPL_VAR id --></p>
     <a href="/logout">Logout</a>
     <!-- TMPL_ELSE -->
+    Sign in using <a href="http://www.browserid.org">Mozilla BrowserID.</a>
+    <br />
     <a href="#" id="browserid" title="Sign-in with BrowserID">  
       <img src="/images/sign_in_blue.png" alt="Sign in">  
     </a>

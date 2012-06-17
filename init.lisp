@@ -12,6 +12,7 @@
     (rename-package :json :custom-json)))
 (tl-run (ql:quickload :drakma))
 ;(tl-run (ql:quickload :chillax))
+(tl-run (ql:quickload :yason))
 (tl-run
   (pushnew #p"/home/nowl/dev/chillax/" asdf:*central-registry*)
   (require 'chillax))
