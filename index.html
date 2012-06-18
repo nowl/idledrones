@@ -10,7 +10,11 @@
   <body>
     <p>Welcome to Idle Drones.</p>
     <!-- TMPL_IF id -->
-    <p style="{color:red;}">Hello <!-- TMPL_VAR id --></p>
+    <p>Hello <!-- TMPL_VAR id --></p>
+    <a href="/discoveries">Discoveries</a>
+    <br/>
+    <a href="/events">Events</a>
+    <br/>
     <a href="/logout">Logout</a>
     <!-- TMPL_ELSE -->
     Sign in using <a href="http://www.browserid.org">Mozilla BrowserID.</a>
@@ -20,31 +24,6 @@
     </a>
     <!-- /TMPL_IF -->
   </body>
-    <script type="text/javascript">
-      $('#browserid').click(function() {
-        navigator.id.get(gotAssertion);  
-        return false;  
-      });
 
-      function gotAssertion(assertion) {  
-      // got an assertion, now send it up to the server for verification  
-      if (assertion !== null) {  
-        $.ajax({  
-          type: 'POST',  
-          url: '/login',  
-          data: { assertion: assertion },  
-          success: function(res, status, xhr) {
-            if (res === null) {}//loggedOut();  
-              window.location = "/";
-            },  
-          error: function(res, status, xhr) {  
-            alert("login failure" + res);  
-          }  
-        });  
-      } else {  
-        //loggedOut();  
-      }  
-    }  
-  </script>
-
+  <script src="js/login.js" type="text/javascript"></script>
 </html>

@@ -7,6 +7,10 @@
 
 (start *acceptor*)
 
+(defun redirect-on-no-session ()
+  (when (not *session*)
+    (redirect "/")))
+
 (define-easy-handler (index :uri "/") ()
   (setf (content-type*) "text/html")
   (let ((id (session-value :id)))    
@@ -41,3 +45,18 @@
   (when *session*
     (remove-session *session*))
   (redirect "/"))
+
+(define-easy-handler (discoveries-url :uri "/discoveries") ()
+  (setf (content-type*) "text")
+  (redirect-on-no-session)
+  (with-output-to-string (stream)
+    (fill-and-print-template #p"discoveries.html" ()
+                             :stream stream)))
+
+
+(define-easy-handler (discoveries-url :uri "/events") ()
+  (setf (content-type*) "text")
+  (redirect-on-no-session)
+  (with-output-to-string (stream)
+    (fill-and-print-template #p"events.html" ()
+                             :stream stream)))
