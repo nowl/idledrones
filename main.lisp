@@ -54,7 +54,7 @@
                              :stream stream)))
 
 
-(define-easy-handler (discoveries-url :uri "/events") ()
+(define-easy-handler (events-url :uri "/events") ()
   (setf (content-type*) "text")
   (redirect-on-no-session)
   (with-output-to-string (stream)

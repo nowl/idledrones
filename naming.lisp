@@ -1,7 +1,7 @@
 (in-package :idrones)
 
-(defun read-names ()
-  (with-open-file (in "name-corpus.txt")
+(defun read-names (filename)
+  (with-open-file (in filename)
     (loop with names while t do
          (let ((line (read-line in nil :eof)))
            (when (eq line :eof)
@@ -30,7 +30,7 @@
   (loop for name in names do
        (fill-stats-for-string name)))
 
-(fill-stats *names*)
+;;(fill-stats *names*)
 
 (defun get-total (hashtable)
   (let ((total 0))
@@ -54,7 +54,14 @@
         (loop for key being the hash-keys of *naming-stats* using (hash-value value) collect
              (cons key (build-cdf value)))))
 
-(build-flat-cdf)
+(defun read-from-corpus (filename)
+  (read-names filename)
+  (fill-stats *names*)
+  (build-flat-cdf))
+
+(defun read-from-existing-cdf (filename)
+  (with-open-file (in filename)
+    (setf *cdf* (read in))))
 
 (defun find-random-next (char)
   (let ((cdf (cdr (assoc char *cdf*)))
