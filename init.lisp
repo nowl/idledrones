@@ -17,3 +17,4 @@
   (pushnew #p"/home/nowl/dev/chillax/" asdf:*central-registry*)
   (require 'chillax))
 (tl-run (require 'idledrones))
+(tl-run (require 'idledrones-sys))

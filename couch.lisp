@@ -29,7 +29,7 @@
                   (symbol ,n)
                   (string (intern ,n))))
             (,doc (delete ,n (chillax:get-document *couch-db* ,id :errorp nil) :key #'car)))
-       (pushnew (cons ,n (format nil "~a" ,value)) ,doc :key #'car)
+       (pushnew (cons ,n (write-to-string ,value)) ,doc :key #'car)
        (format t "~a" ,doc)
        (chillax:put-document *couch-db* ,id ,doc))))
 

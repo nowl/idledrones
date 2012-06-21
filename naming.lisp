@@ -1,4 +1,4 @@
-(in-package :idrones)
+(in-package :idrones-sys)
 
 (defun read-names (filename)
   (with-open-file (in filename)
@@ -8,7 +8,7 @@
              (return names))
            (push line names)))))
 
-(defparameter *names* (read-names))
+(defparameter *names* nil)
 (defparameter *naming-stats* (make-hash-table))
 (defparameter *cdf* nil)
 
@@ -62,6 +62,8 @@
 (defun read-from-existing-cdf (filename)
   (with-open-file (in filename)
     (setf *cdf* (read in))))
+
+(read-from-existing-cdf "planet-name.cdf")
 
 (defun find-random-next (char)
   (let ((cdf (cdr (assoc char *cdf*)))
