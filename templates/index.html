@@ -1,6 +1,7 @@
 <html>
   <script src="https://browserid.org/include.js" type="text/javascript"></script>
-  <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/jquery-1.7.2.min.js') }}"
+          type="text/javascript"></script>
 
   <head>
     <title>
@@ -9,21 +10,23 @@
   </head>
   <body>
     <p>Welcome to Idle Drones.</p>
-    <!-- TMPL_IF id -->
-    <p>Hello <!-- TMPL_VAR id --></p>
+    {% if id %}
+    <p>Hello {{ id }}</p>
     <a href="/discoveries">Discoveries</a>
     <br/>
     <a href="/events">Events</a>
     <br/>
     <a href="/logout">Logout</a>
-    <!-- TMPL_ELSE -->
+    {% else %}
     Sign in using <a href="http://www.browserid.org">Mozilla BrowserID.</a>
     <br />
     <a href="#" id="browserid" title="Sign-in with BrowserID">  
-      <img src="/images/sign_in_blue.png" alt="Sign in">  
+      <img src="{{ url_for('static', filename='images/sign_in_blue.png') }}"
+           alt="Sign in">  
     </a>
-    <!-- /TMPL_IF -->
+    {% endif %}
   </body>
 
-  <script src="js/login.js" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/login.js') }}"
+          type="text/javascript"></script>
 </html>
