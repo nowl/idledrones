@@ -1,9 +1,11 @@
 from collections import defaultdict
 from random import random, randint
 
-def total_word(totals, word):
+def total_word(totals, word, chainlen=2):
     prev = None
-    for a in word.strip().lower():
+    norm = word.strip().lower()
+    for c in range(len(word) - chainlen):
+        a = norm[c:c+chainlen]
         if prev:
             tot = totals[prev].get(a, 0)
             totals[prev][a] = tot + 1
@@ -27,16 +29,15 @@ def cdf_ify(d):
     return cdf
 
 def random_next(cdf, cur):
-    r = random()
-    for x in cdf[cur]:
-        if r <= x[1]:
-            return x[0]
+    x = randint(0, len(cdf[cur])-1)
+    return cdf[cur][x][0]
 
 def random_word(cdf, min=4, max=10):
+    length = randint(min, max)
     word = ''
     keys = cdf.keys()
     cur = keys[randint(0,len(keys)-1)]
-    for i in range(randint(min,max)):
+    while len(word) < length:
         a = random_next(cdf, cur)
         word += a
         cur = a
@@ -68,7 +69,8 @@ def read_from_file(file):
     return cdf
 
 if __name__ == '__main__':
-    cdf = read_from_file('planet-name.cdf')
+    #cdf = read_from_file('planet-name.cdf')
+    cdf = read_from_file('name-corpus.txt')
     
     for i in range(20):
         print random_word(cdf)
