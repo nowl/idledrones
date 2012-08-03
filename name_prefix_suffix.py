@@ -15,31 +15,25 @@ suffixes = ['effola', 'ellaw', 'usse', 'ung', 'asa', 'ueck', 'uov', 'cell', 'ock
             'oneth', 'iemn', 'ese', 'auva', 'uss', 'unga', 'olle', 'uck',
             'iarart', 'oung', 'eng', 'ono', 'ena', 'egent', 'ala', 'acuff', 'arg']
 
+MAX_ROMAN_NUM = 20
+
 def roman_num(num):
-    if num < 1 or num > 10:
+    if num < 1 or num > MAX_ROMAN_NUM:
         return ''
     return {1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V',
-            6: 'VI', 7: 'VII', 8: 'VIII', 9: 'IX', 10: 'X'}[num]
+            6: 'VI', 7: 'VII', 8: 'VIII', 9: 'IX', 10: 'X',
+            11: 'XI', 12: 'XII', 13: 'XIII', 14: 'XIV', 15: 'XV',
+            16: 'XVI', 17: 'XVII', 18: 'XVIII', 19: 'XIX', 20: 'XX'}[num]
 
-set_prefixes = set(prefixes)
-set_suffixes = set(suffixes)
-
-print len(set_prefixes), len(prefixes)
-print len(set_suffixes), len(suffixes)
-
-names = []
-for i in range(1000):
-    prefix = prefixes[randint(0, len(prefixes)-1)]
-    suffix = suffixes[randint(0, len(suffixes)-1)]
-    new_name = list(prefix + suffix)
-    new_name[0] = new_name[0].upper()
-    new_name.append(' ')
-    new_name.append(roman_num(randint(1, 10)))
-    new_name = ''.join(new_name)
-    #if new_name not in names:
-    names.append(new_name)
-
-set_names = set(names)
-print len(names), len(set_names)
-
-print list(set_names)[0:10]
+def get_name(existing_names = None):
+    for i in range(25):
+        prefix = prefixes[randint(0, len(prefixes)-1)]
+        suffix = suffixes[randint(0, len(suffixes)-1)]
+        new_name = list(prefix + suffix)
+        new_name[0] = new_name[0].upper()
+        new_name.append(' ')
+        new_name.append(roman_num(randint(1, MAX_ROMAN_NUM)))
+        new_name = ''.join(new_name)
+        if not existing_names or (existing_names and new_name not in existing_names):
+            return new_name
+    return None

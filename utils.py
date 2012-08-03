@@ -50,10 +50,4 @@ class Choices ():
             if choice <= c[1]:
                 return c[0]
 
-'''
-test_choices = Choices(("system", 5),
-                       ("planet", 20),
-                       ("asteroid", 1),
-                       ("alien craft", 50),
-                       ("alien planet", 100))
-'''
+    
