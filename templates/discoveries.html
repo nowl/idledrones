@@ -40,63 +40,63 @@
           <td>{{ disc.name }}</td>
           <td>
             {% if 'light ores' in disc.resources %}
-            {{ '%.2f' % disc.resources['light ores'] }}
+            {{ '%.1f' % (100 * disc.resources['light ores']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'heavy ores' in disc.resources %}
-            {{ '%.2f' % disc.resources['heavy ores'] }}
+            {{ '%.1f' % (100 * disc.resources['heavy ores']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'rare ores' in disc.resources %}
-            {{ '%.2f' % disc.resources['rare ores'] }}
+            {{ '%.1f' % (100 * disc.resources['rare ores']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'unique ores' in disc.resources %}
-            {{ '%.2f' % disc.resources['unique ores'] }}
+            {{ '%.1f' % (100 * disc.resources['unique ores']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'light gases' in disc.resources %}
-            {{ '%.2f' % disc.resources['light gases'] }}
+            {{ '%.1f' % (100 * disc.resources['light gases']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'heavy gases' in disc.resources %}
-            {{ '%.2f' % disc.resources['heavy gases'] }}
+            {{ '%.1f' % (100 * disc.resources['heavy gases']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'rare gases' in disc.resources %}
-            {{ '%.2f' % disc.resources['rare gases'] }}
+            {{ '%.1f' % (100 * disc.resources['rare gases']) }}
             {% else %}
             ---
             {% endif %}
           </td>
           <td>
             {% if 'unique gases' in disc.resources %}
-            {{ '%.2f' % disc.resources['unique gases'] }}
+            {{ '%.1f' % (100 * disc.resources['unique gases']) }}
             {% else %}
             ---
             {% endif %}
           </td>
                               <td>
             {% if 'consumables' in disc.resources %}
-            {{ '%.2f' % disc.resources['consumables'] }}
+            {{ '%.1f' % (100 * disc.resources['consumables']) }}
             {% else %}
             ---
             {% endif %}

@@ -7,7 +7,7 @@ body {
 #container {
     margin: 0 auto;
     text-align: left;
-    width: 90%;
+    width: 75%;
 }
 
 #nav {
@@ -17,4 +17,8 @@ body {
 
 p {
     padding: 2px;
+}
+
+.event_time {
+    color: green;
 }

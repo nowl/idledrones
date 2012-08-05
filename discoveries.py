@@ -10,7 +10,6 @@ discovery_types = Choices(("system", 5),
                           ("alien craft", 50),
                           ("alien planet", 100))
 
-# TODO add the rest of the resource probs
 resource_tables = {'chance to appear':
                        {'asteroid': {'light ores': 0.75,
                                      'heavy ores': 0.1,

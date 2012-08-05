@@ -21,7 +21,10 @@
       <p>Events</p>
         
       {% for event in events %}
-      <p>{{ event }}</p>
+      <p>
+        [<span class="event_time">{{ event['formatted time'] }}</span>]
+        <span class="event_text">{{ event['event string'] }}</span>
+      </p>
       {% endfor %}
       
     </div>
