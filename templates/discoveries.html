@@ -2,10 +2,9 @@
   <script src="https://browserid.org/include.js" type="text/javascript"></script>
   <script src="{{ url_for('static', filename='js/jquery-1.7.2.min.js') }}"
           type="text/javascript"></script>
-  <!--
+
   <link rel="stylesheet" href="{{ url_for('static', filename='style/reset.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}" type="text/css" />
-  -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/discoveries.css') }}" type="text/css" />
 
   <head>
     <title>
@@ -13,82 +12,100 @@
     </title>
   </head>
   <body>
-    <p>Discoveries you've made</p>
-    <a href="/events">Events</a>
-    <br/>
-    <a href="/logout">Logout</a>
-    <br/>
+    <div id="container">
+      <div id="nav">
+        <a href="/events">Events</a>
+        <a href="/logout">Logout</a>
+      </div>
 
-    <table>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Light Ores</th>
-        <th>Heavy Ores</th>
-        <th>Rare Ores</th>
-        <th>Unique Ores</th>
-        <th>Light Gases</th>
-        <th>Heavy Gases</th>
-        <th>Rare Gases</th>
-      </tr>
-      
-      {% for disc in discoveries %}
-      <tr>
-        <td>{{ disc.type }}</td>
-        <td>{{ disc.name }}</td>
-        <td>
-          {% if 'light ores' in disc.resources %}
-          {{ '%.2f' % disc.resources['light ores'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'heavy ores' in disc.resources %}
-          {{ '%.2f' % disc.resources['heavy ores'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'rare ores' in disc.resources %}
-          {{ '%.2f' % disc.resources['rare ores'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'unique ores' in disc.resources %}
-          {{ '%.2f' % disc.resources['unique ores'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'light gases' in disc.resources %}
-          {{ '%.2f' % disc.resources['light gases'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'heavy gases' in disc.resources %}
-          {{ '%.2f' % disc.resources['heavy gases'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-        <td>
-          {% if 'rare gases' in disc.resources %}
-          {{ '%.2f' % disc.resources['rare gases'] }}
-          {% else %}
-          ---
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-      
-    </table>
+      <p>Discoveries made</p>
+      <table>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Light Ores</th>
+          <th>Heavy Ores</th>
+          <th>Rare Ores</th>
+          <th>Unique Ores</th>
+          <th>Light Gases</th>
+          <th>Heavy Gases</th>
+          <th>Rare Gases</th>
+          <th>Unique Gases</th>
+          <th>Consumables</th>
+        </tr>
+        
+        {% for disc in discoveries %}
+        <tr>
+          <td>{{ disc.type }}</td>
+          <td>{{ disc.name }}</td>
+          <td>
+            {% if 'light ores' in disc.resources %}
+            {{ '%.2f' % disc.resources['light ores'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'heavy ores' in disc.resources %}
+            {{ '%.2f' % disc.resources['heavy ores'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'rare ores' in disc.resources %}
+            {{ '%.2f' % disc.resources['rare ores'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'unique ores' in disc.resources %}
+            {{ '%.2f' % disc.resources['unique ores'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'light gases' in disc.resources %}
+            {{ '%.2f' % disc.resources['light gases'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'heavy gases' in disc.resources %}
+            {{ '%.2f' % disc.resources['heavy gases'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'rare gases' in disc.resources %}
+            {{ '%.2f' % disc.resources['rare gases'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+          <td>
+            {% if 'unique gases' in disc.resources %}
+            {{ '%.2f' % disc.resources['unique gases'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+                              <td>
+            {% if 'consumables' in disc.resources %}
+            {{ '%.2f' % disc.resources['consumables'] }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+    </div>
   </body>
 
 </html>

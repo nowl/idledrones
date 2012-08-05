@@ -1,0 +1,33 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+table {
+    //border: 1px solid green;
+    margin: 4px;
+    width: 100%;
+    padding: 2px;
+}
+
+td {
+    padding: 4px;
+}
+
+th {
+    color: blue;
+    background-color: grey;
+    padding: 2px;
+}
+
+#container {
+    margin: 0 auto;
+    text-align: left;
+    width: 90%;
+}
+
+#nav {
+    margin: 1em;
+    font-size: 1.5em;
+}
