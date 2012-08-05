@@ -70,6 +70,17 @@ class MongoInterface ():
     def get_user_exploration_drones(self, user):
         return self._get({'user': user, 'type': 'user_info'})['exploration drones']
 
+    def set_events(self, user, events):
+        self._set({'user': user,
+                   'type': 'user_info'},
+                  'events',
+                  repr(events))
+
+    @fail_safe([])
+    def get_events(self, user):
+        return eval(self._get({'user': user, 'type': 'user_info'})['events'])
+        
+
 
 if __name__ == '__main__':
     mint = MongoInterface()

@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from time import sleep
 
 if __name__ == '__main__':
-    updateFreq = timedelta(seconds=3)
+    updateFreq = timedelta(seconds=1)
     nextUpdate = datetime.utcnow()
     while True:
         walltime = datetime.utcnow()

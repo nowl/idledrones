@@ -56,6 +56,13 @@ def discoveries():
     ds = g.db.get_discoveries(email)
     return render_template('discoveries.html', id=email, discoveries=ds)
 
+@app.route('/events')
+@login_required
+def events():
+    email = session.get('email', None)
+    evs = g.db.get_events(email)
+    return render_template('events.html', id=email, events=evs)
+
 if __name__ == '__main__':
     app.config.from_pyfile('idrones_webapp.cfg')
     app.run()

@@ -2,6 +2,7 @@ from utils import Choices, check_roll
 from random import random
 from name_prefix_suffix import get_name
 from mongo import MongoInterface
+from events import log_event
 
 discovery_types = Choices(("system", 5),
                           ("planet", 20),
@@ -19,7 +20,32 @@ resource_tables = {'chance to appear':
                                    'rare ores': 0.1,
                                    'light gases': 0.7,
                                    'heavy gases': 0.4,
-                                   'rare gases': 0.2}},
+                                   'rare gases': 0.2,
+                                   'consumables': 0.5},
+                        'planet': {'light ores': 1.0,
+                                   'heavy ores': 0.95,
+                                   'rare ores': 0.5,
+                                   'light gases': 0.2,
+                                   'heavy gases': 0.2,
+                                   'rare gases': 0.3,
+                                   'consumables': 0.9},
+                        'alien craft': {'light ores': 0.2,
+                                        'heavy ores': 0.8,
+                                        'rare ores': 0.7,
+                                        'unique ores': 0.4,
+                                        'light gases': 0.2,
+                                        'heavy gases': 0.2,
+                                        'rare gases': 0.6,
+                                        'unique gases': 0.4},
+                        'alien planet': {'light ores': 0.7,
+                                         'heavy ores': 0.8,
+                                         'rare ores': 0.9,
+                                         'unique ores': 0.6,
+                                         'light gases': 0.6,
+                                         'heavy gases': 0.6,
+                                         'rare gases': 0.8,
+                                         'unique gases': 0.8,
+                                         'consumables': 1.0}},
                    'extraction potential':
                        {'asteroid': {'light ores': 0.5,
                                      'heavy ores': 0.1,
@@ -29,7 +55,32 @@ resource_tables = {'chance to appear':
                                    'rare ores': 0.1,
                                    'light gases': 0.45,
                                    'heavy gases': 0.25,
-                                   'rare gases': 0.15}}}
+                                   'rare gases': 0.15,
+                                   'consumables': 0.35},
+                        'planet': {'light ores': 0.9,
+                                   'heavy ores': 0.3,
+                                   'rare ores': 0.2,
+                                   'light gases': 0.8,
+                                   'heavy gases': 0.4,
+                                   'rare gases': 0.3,
+                                   'consumables': 0.9},
+                        'alien craft': {'light ores': 0.8,
+                                        'heavy ores': 0.7,
+                                        'rare ores': 0.6,
+                                        'unique ores': 0.6,
+                                        'light gases': 0.8,
+                                        'heavy gases': 0.7,
+                                        'rare gases': 0.6,
+                                        'unique gases': 0.6},
+                        'alien planet': {'light ores': 0.9,
+                                         'heavy ores': 0.8,
+                                         'rare ores': 0.8,
+                                         'unique ores': 0.8,
+                                         'light gases': 0.9,
+                                         'heavy gases': 0.8,
+                                         'rare gases': 0.8,
+                                         'unique gases': 0.8,
+                                         'consumables': 0.6}}}
                    
 def possibly_make_discovery(prob_of_discovery, num_exp_drones, num_discoveries):
     if num_discoveries == 0:
@@ -63,6 +114,7 @@ def run_discovery(mint, user):
     if disc:
         cur_discoveries.append(disc)
         mint.set_discoveries(user, cur_discoveries)
+        log_event(mint, user, "You have discovered a new %s named %s!" % (disc['type'], disc['name']))
         print '%s made discovery: %s' % (user, disc)
 
     

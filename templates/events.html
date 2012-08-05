@@ -1,0 +1,30 @@
+<html>
+  <script src="https://browserid.org/include.js" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/jquery-1.7.2.min.js') }}"
+          type="text/javascript"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/reset.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/events.css') }}" type="text/css" />
+
+  <head>
+    <title>
+      IDLE DRONES :: Events
+    </title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="nav">
+        <a href="/discoveries">Discoveries</a>
+        <a href="/logout">Logout</a>
+      </div>
+      
+      <p>Events</p>
+        
+      {% for event in events %}
+      <p>{{ event }}</p>
+      {% endfor %}
+      
+    </div>
+  </body>
+
+</html>
