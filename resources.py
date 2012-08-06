@@ -22,7 +22,7 @@ def gen_resources(mint, user):
     for typ in types:
         new[typ] = resources.get(typ, 0) + new_resources[typ]
 
-        if new_resources['typ'] != 0:
-            log_event(mint, user, "You have discovered %d %s!" % (new_resources['typ'], typ))
+        if new_resources[typ] != 0:
+            log_event(mint, user, "Your drones have extracted %.0f %s." % (new_resources[typ], typ))
 
     mint.set_resources(user, new)
