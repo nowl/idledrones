@@ -79,6 +79,17 @@ class MongoInterface ():
     @fail_safe([])
     def get_events(self, user):
         return eval(self._get({'user': user, 'type': 'user_info'})['events'])
+
+    def set_resources(self, user, resources):
+        self._set({'user': user,
+                   'type': 'user_info'},
+                  'resources',
+                  repr(resources))
+
+    @fail_safe({})
+    def get_resources(self, user):
+        return eval(self._get({'user': user, 'type': 'user_info'})['resources'])
+
         
 
 

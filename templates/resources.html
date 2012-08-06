@@ -4,28 +4,30 @@
           type="text/javascript"></script>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='style/reset.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style/events.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/resources.css') }}" type="text/css" />
 
   <head>
     <title>
-      IDLE DRONES :: Events
+      IDLE DRONES :: Resources
     </title>
   </head>
   <body>
     <div id="container">
       <div id="nav">
         <a href="/discoveries">Discoveries</a>
-        <a href="/resources">Resources</a>
+        <a href="/events">Events</a>
         <a href="/logout">Logout</a>
       </div>
       
-      <p>Events</p>
+      <p>Resources</p>
+
+      {% for typ in ['Light Ores', 'Heavy Ores', 'Rare Ores', 'Unique Ores', 'Light Gases', 'Heavy Gases', 'Rare Gases', 'Unique Gases', 'Consumables'] %}
         
-      {% for event in events %}
       <p>
-        [<span class="event_time">{{ event['formatted time'] }}</span>]
-        <span class="event_text">{{ event['event string'] }}</span>
+        [<span class="resource_type">{{ typ }}</span>]
+        <span class="resource_amount">{{ '%.0f' % resources[typ.lower()] }}</span>
       </p>
+
       {% endfor %}
       
     </div>

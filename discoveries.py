@@ -1,7 +1,6 @@
 from utils import Choices, check_roll
 from random import random
 from name_prefix_suffix import get_name
-from mongo import MongoInterface
 from events import log_event
 
 discovery_types = Choices(("system", 5),
@@ -114,6 +113,5 @@ def run_discovery(mint, user):
         cur_discoveries.append(disc)
         mint.set_discoveries(user, cur_discoveries)
         log_event(mint, user, "You have discovered a new %s named %s!" % (disc['type'], disc['name']))
-        print '%s made discovery: %s' % (user, disc)
 
     

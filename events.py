@@ -9,3 +9,5 @@ def log_event(mint, user, event):
                  'event string': event}
     events.append(new_event)
     mint.set_events(user, events)
+
+    print 'event: %s: [%s] %s' % (user, cur_time, event)

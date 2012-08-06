@@ -63,6 +63,13 @@ def events():
     evs = g.db.get_events(email)
     return render_template('events.html', id=email, events=evs)
 
+@app.route('/resources')
+@login_required
+def resources():
+    email = session.get('email', None)
+    rcs = g.db.get_resources(email)
+    return render_template('resources.html', id=email, resources=rcs)
+
 if __name__ == '__main__':
     app.config.from_pyfile('idrones_webapp.cfg')
     app.run()

@@ -1,4 +1,5 @@
 from discoveries import run_discovery
+from resources import gen_resources
 from mongo import MongoInterface
 from datetime import datetime, timedelta
 from time import sleep
@@ -22,6 +23,7 @@ if __name__ == '__main__':
 
         for user in users:
             run_discovery(mint, user)
+            gen_resources(mint, user)
 
         mint.close()
         
