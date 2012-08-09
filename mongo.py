@@ -40,6 +40,28 @@ class MongoInterface ():
             spec[field] = value
             self.collection.insert(spec)
 
+    # server level commands
+
+    def set_users(self, users):        
+        self._set({'type': 'server_info'},
+                  'users',
+                  repr(users))
+    
+    @fail_safe([])
+    def get_users(self):
+        return self._get({'type': 'server_info'})['users']
+
+    def set_trades(self, trades):        
+        self._set({'type': 'server_info'},
+                  'trades',
+                  repr(trades))
+    
+    @fail_safe({})
+    def get_trades(self):
+        return eval(self._get({'type': 'server_info'})['trades'])
+
+    # user level commands
+
     def set_login_time(self, user):        
         self._set({'user': user,
                    'type': 'user_info'},
@@ -90,6 +112,15 @@ class MongoInterface ():
     def get_resources(self, user):
         return eval(self._get({'user': user, 'type': 'user_info'})['resources'])
 
+    def set_credits(self, user, cdits):
+        self._set({'user': user,
+                   'type': 'user_info'},
+                  'credits',
+                  cdits)
+
+    @fail_safe(0)
+    def get_credits(self, user):
+        return eval(self._get({'user': user, 'type': 'user_info'})['credits'])
         
 
 

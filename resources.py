@@ -1,7 +1,7 @@
 from events import log_event
 from collections import defaultdict
 
-BASE_EXTRACTION = 1000
+BASE_EXTRACTION = 10
 
 def update_resources(disc, res):
     for typ, pot in disc.iteritems():
@@ -26,3 +26,4 @@ def gen_resources(mint, user):
             log_event(mint, user, "Your drones have extracted %.0f %s." % (new_resources[typ], typ))
 
     mint.set_resources(user, new)
+    return new

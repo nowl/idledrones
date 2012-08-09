@@ -19,19 +19,29 @@
         <a href="/logout">Logout</a>
       </div>
       
+      {<span class="resource_type">Credits</span>} {{ cdits }}
+
+      <hr />
+
       <p>Resources</p>
 
-      {% for typ in ['Light Ores', 'Heavy Ores', 'Rare Ores', 'Unique Ores', 'Light Gases', 'Heavy Gases', 'Rare Gases', 'Unique Gases', 'Consumables'] %}
+      <form name="trade" action="/resources" method="post">
+        {% for typ in ['Light Ores', 'Heavy Ores', 'Rare Ores', 'Unique Ores', 'Light Gases', 'Heavy Gases', 'Rare Gases', 'Unique Gases', 'Consumables'] %}
         
-      {% if resources[typ.lower()] != 0 %}
-      <p>
-        [<span class="resource_type">{{ typ }}</span>]
-        <span class="resource_amount">{{ '%.0f' % resources[typ.lower()] }}</span>
-      </p>
+        {% if resources[typ.lower()] != 0 %}
+        <p>
+          [<span class="resource_type">{{ typ }}</span>]
+          <span class="resource_amount">{{ '%.0f' % resources[typ.lower()] }}</span>
+          <input type="text" name="{{ typ }}" />
+          {% if typ.lower() in trades %}
+          Trade value: <span class="resource_amount">{{ '%.4f' % trades[typ.lower()] }}</span> credits
+          {% endif %}
+        </p>
+        {% endif %}
 
-      {% endif %}
-
-      {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Trade for credits" />
+      </form>
       
     </div>
   </body>

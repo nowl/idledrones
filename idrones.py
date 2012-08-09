@@ -63,12 +63,17 @@ def events():
     evs = g.db.get_events(email)
     return render_template('events.html', id=email, events=evs)
 
-@app.route('/resources')
+@app.route('/resources', methods=['GET', 'POST'])
 @login_required
 def resources():
-    email = session.get('email', None)
-    rcs = g.db.get_resources(email)
-    return render_template('resources.html', id=email, resources=rcs)
+    if request.method == 'GET':
+        email = session.get('email', None)
+        rcs = g.db.get_resources(email)
+        cdits = g.db.get_credits(email)
+        trades = g.db.get_trades()
+        return render_template('resources.html', id=email, resources=rcs, trades=trades, cdits=cdits)
+    elif request.method == 'POST':
+        return str(request.form)
 
 if __name__ == '__main__':
     app.config.from_pyfile('idrones_webapp.cfg')
