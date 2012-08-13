@@ -31,7 +31,7 @@
         {% if resources[typ.lower()] != 0 %}
         <p>
           [<span class="resource_type">{{ typ }}</span>]
-          <span class="resource_amount">{{ '%.0f' % resources[typ.lower()] }}</span>
+          <span class="resource_amount">{{ '%d' % resources[typ.lower()] }}</span>
           <input type="text" name="{{ typ }}" />
           {% if typ.lower() in trades %}
           Trade value: <span class="resource_amount">{{ '%.4f' % trades[typ.lower()] }}</span> credits

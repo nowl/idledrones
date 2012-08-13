@@ -20,10 +20,10 @@ def gen_resources(mint, user):
              'light gases', 'heavy gases', 'rare gases', 'unique gases',
              'consumables']
     for typ in types:
-        new[typ] = resources.get(typ, 0) + new_resources[typ]
+        new[typ] = resources.get(typ, 0) + int(new_resources[typ])
 
         if new_resources[typ] != 0:
-            log_event(mint, user, "Your drones have extracted %.0f %s." % (new_resources[typ], typ))
+            log_event(mint, user, "Your drones have extracted %d %s." % (new_resources[typ], typ))
 
     mint.set_resources(user, new)
     return new

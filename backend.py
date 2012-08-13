@@ -56,7 +56,7 @@ if __name__ == '__main__':
         users = mint.get_users()
 
         for user in users:
-            #run_discovery(mint, user)
+            run_discovery(mint, user)
             resources = gen_resources(mint, user)
             append_trades(resources)
 
