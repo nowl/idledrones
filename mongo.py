@@ -49,7 +49,7 @@ class MongoInterface ():
     
     @fail_safe([])
     def get_users(self):
-        return self._get({'type': 'server_info'})['users']
+        return eval(self._get({'type': 'server_info'})['users'])
 
     def set_trades(self, trades):        
         self._set({'type': 'server_info'},
